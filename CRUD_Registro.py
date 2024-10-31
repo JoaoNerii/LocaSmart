@@ -88,7 +88,23 @@ def excluir_usuario():
     else:
         print(f"Pessoa com CPF {cpf_excluir} Não Encontrada")
 
+#RESOLVER PARTE LOGIN USUARIO
 
+def login_usuario(cpf, senha):
+    dados_usuario = carregar_dados()
+
+    cpf = cpf.strip()
+    senha = senha.strip()
+
+    for users in dados_usuario:
+        if str(users["cpf"]) == cpf and str(users["senha"]) == senha:
+            print(f"Fazendo Login em conta de CPF: {cpf}")
+            return True
+
+    print("CPF Ou Senha Incorretos!")
+    return False
+
+            
 while True:
     print("\n1 - Cadastrar Novo Usuário \n2 - Login \n3 - Listar Usuários \n4 - Atualizar Usuário \n5 - Excluir Usuário \n0 - Sair\n")
     opcao = int(input("Escolha uma opção: "))
@@ -107,9 +123,9 @@ while True:
             idade = input("Digite sua idade: ")
             adicionar_usuario(nome, cpf, telefone, endereco, cep, email, senha, idade)
         case 2:
-            print("=" * 5)
-            print("Login")
-            print("=" * 5)
+            cpf = input("Digite seu CPF: ")
+            senha = input("Digite sua Senha: ")
+            login_usuario(cpf, senha)
         case 3:
             print("=" * 20)
             print("Listando Usuários...")
