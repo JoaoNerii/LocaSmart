@@ -28,7 +28,7 @@ def adicionar_usuario(nome, cpf, telefone, endereco, cep, email, senha, idade):
                     "email": email,
                     "senha": senha,
                     "idade": idade}
-    
+
     dados_usuario.append(novo_usuario)
     salvar_dados(dados_usuario)
 
@@ -104,39 +104,39 @@ def login_usuario(cpf, senha):
     print("CPF Ou Senha Incorretos!")
     return False
 
-            
-while True:
-    print("\n1 - Cadastrar Novo Usuário \n2 - Login \n3 - Listar Usuários \n4 - Atualizar Usuário \n5 - Excluir Usuário \n0 - Sair\n")
-    opcao = int(input("Escolha uma opção: "))
-    match (opcao):
-        case 1:
-            print("-" * 27)
-            print("Cadastrando Novo Usuário...")
-            print("-" * 27)
-            nome = input("Digite seu nome: ")
-            cpf = input("Digite seu CPF: ")
-            telefone = input("Digite seu telefone: ")
-            endereco = input("Digite seu endereço: ")
-            cep = input("Digite seu CEP: ")
-            email = input("Digite seu email: ")
-            senha = input("Digite sua senha: ")
-            idade = input("Digite sua idade: ")
-            adicionar_usuario(nome, cpf, telefone, endereco, cep, email, senha, idade)
-        case 2:
-            cpf = input("Digite seu CPF: ")
-            senha = input("Digite sua Senha: ")
-            login_usuario(cpf, senha)
-        case 3:
-            print("=" * 20)
-            print("Listando Usuários...")
-            print("=" * 20)
-            listar_usuario()
-        case 4:
-            atualizar_usuario()
-        case 5:
-            excluir_usuario()
-        case 0:
-            print("=" * 9)
-            print("Saindo...")
-            print("=" * 9)
-            break
+if __name__ == "__main__":
+    while True:
+        print("\n1 - Cadastrar Novo Usuário \n2 - Login \n3 - Listar Usuários \n4 - Atualizar Usuário \n5 - Excluir Usuário \n0 - Sair\n")
+        opcao = int(input("Escolha uma opção: "))
+        match (opcao):
+            case 1:
+                print("-" * 27)
+                print("Cadastrando Novo Usuário...")
+                print("-" * 27)
+                nome = input("Digite seu nome: ")
+                cpf = input("Digite seu CPF: ")
+                telefone = input("Digite seu telefone: ")
+                endereco = input("Digite seu endereço: ")
+                cep = input("Digite seu CEP: ")
+                email = input("Digite seu email: ")
+                senha = input("Digite sua senha: ")
+                idade = input("Digite sua idade: ")
+                adicionar_usuario(nome, cpf, telefone, endereco, cep, email, senha, idade)
+            case 2:
+                cpf = input("Digite seu CPF: ")
+                senha = input("Digite sua Senha: ")
+                login_usuario(cpf, senha)
+            case 3:
+                print("=" * 20)
+                print("Listando Usuários...")
+                print("=" * 20)
+                listar_usuario()
+            case 4:
+                atualizar_usuario()
+            case 5:
+                excluir_usuario()
+            case 0:
+                print("=" * 9)
+                print("Saindo...")
+                print("=" * 9)
+                break
