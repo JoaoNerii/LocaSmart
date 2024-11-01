@@ -1,0 +1,22 @@
+[
+    {
+        "nome": "teste",
+        "cpf": "123",
+        "telefone": "123",
+        "endereco": "av.123",
+        "cep": "123",
+        "email": "123@email",
+        "senha": "123",
+        "idade": "30"
+    },
+    {
+        "nome": "fulano",
+        "cpf": "456",
+        "telefone": "4456",
+        "endereco": "456",
+        "cep": "456",
+        "email": "456",
+        "senha": "456",
+        "idade": "456"
+    }
+]

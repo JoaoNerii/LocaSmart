@@ -32,7 +32,7 @@ def adicionar_usuario(nome, cpf, telefone, endereco, cep, email, senha, idade):
                     "email": email,
                     "senha": senha,
                     "idade": idade}
-    
+
     dados_usuario.append(novo_usuario)
     salvar_dados(dados_usuario)
 
@@ -105,7 +105,6 @@ def login_usuario(cpf, senha):
 
     print("CPF Ou Senha Incorretos!")
     return False
-
             
 while True:
     print("=" * 11, cor.CIANO + "LocaSmart" + cor.RESET, "=" * 12)
