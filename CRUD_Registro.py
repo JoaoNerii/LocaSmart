@@ -3,6 +3,10 @@ import os
 
 arquivo = "usuarios.json"
 
+class cor:
+    CIANO = '\033[96m'
+    RESET = '\033[0m'
+
 def carregar_dados():
     if os.path.exists(arquivo):
         try:
@@ -88,8 +92,6 @@ def excluir_usuario():
     else:
         print(f"Pessoa com CPF {cpf_excluir} Não Encontrada")
 
-#RESOLVER PARTE LOGIN USUARIO
-
 def login_usuario(cpf, senha):
     dados_usuario = carregar_dados()
 
@@ -106,8 +108,10 @@ def login_usuario(cpf, senha):
 
             
 while True:
-    print("\n1 - Cadastrar Novo Usuário \n2 - Login \n3 - Listar Usuários \n4 - Atualizar Usuário \n5 - Excluir Usuário \n0 - Sair\n")
-    opcao = int(input("Escolha uma opção: "))
+    print("=" * 11, cor.CIANO + "LocaSmart" + cor.RESET, "=" * 12)
+    print(f"|  [{cor.CIANO}1{cor.RESET}] - Cadastrar Novo Usuário  |\n|  [{cor.CIANO}2{cor.RESET}] - Login                   |\n|  [{cor.CIANO}3{cor.RESET}] - Listar Usuários         |\n|  [{cor.CIANO}4{cor.RESET}] - Atualizar Usuário       |\n|  [{cor.CIANO}5{cor.RESET}] - Excluir Usuário         |\n|  [{cor.CIANO}0{cor.RESET}] - Sair                    |")
+    print("=" * 34)
+    opcao = int(input(cor.CIANO + "Escolha uma opção: " + cor.RESET))
     match (opcao):
         case 1:
             print("-" * 27)
