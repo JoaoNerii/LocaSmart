@@ -1,0 +1,243 @@
+[
+    {
+        "marca": "Volkswagen",
+        "idMarca": 59,
+        "modelos": [
+            {
+                "modelo": "Gol",
+                "disponivel": true,
+                "codigo_fipe": "005502-6",
+                "tipo": "Hatch"
+            },
+            {
+                "modelo": "T-Cross",
+                "disponivel": true,
+                "codigo_fipe": "005508-5",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Virtus",
+                "disponivel": true,
+                "codigo_fipe": "005484-4",
+                "tipo": "Sedã"
+            }
+        ]
+    },
+    {
+        "marca": "Chevrolet",
+        "idMarca": 23,
+        "modelos": [
+            {
+                "modelo": "Onix",
+                "disponivel": true,
+                "codigo_fipe": "004513-6",
+                "tipo": "Hatch"
+            },
+            {
+                "modelo": "Tracker",
+                "disponivel": true,
+                "codigo_fipe": "004525-0",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Cruze",
+                "disponivel": true,
+                "codigo_fipe": "004510-1",
+                "tipo": "Sedã"
+            }
+        ]
+    },
+    {
+        "marca": "Fiat",
+        "idMarca": 21,
+        "modelos": [
+            {
+                "modelo": "Cronos",
+                "disponivel": true,
+                "codigo_fipe": "001502-4",
+                "tipo": "Sedan"
+            },
+            {
+                "modelo": "Fastback",
+                "disponivel": true,
+                "codigo_fipe": "001572-5",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Pulse",
+                "disponivel": true,
+                "codigo_fipe": "001542-3",
+                "tipo": "SUV"
+            }
+        ]
+    },
+    {
+        "marca": "Ford",
+        "idMarca": 22,
+        "modelos": [
+            {
+                "modelo": "Mustang",
+                "disponivel": true,
+                "codigo_fipe": "003480-0",
+                "tipo": "Sedã"
+            },
+            {
+                "modelo": "Territory",
+                "disponivel": true,
+                "codigo_fipe": "003478-9",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Ranger",
+                "disponivel": true,
+                "codigo_fipe": "003500-9",
+                "tipo": "SUV"
+            }
+        ]
+    },
+    {
+        "marca": "Renault",
+        "idMarca": 48,
+        "modelos": [
+            {
+                "modelo": "Kwid",
+                "disponivel": true,
+                "codigo_fipe": "025329-4",
+                "tipo": "Hatch"
+            },
+            {
+                "modelo": "Sandero",
+                "disponivel": true,
+                "codigo_fipe": "025309-0",
+                "tipo": "Hatch"
+            },
+            {
+                "modelo": "Duster",
+                "disponivel": true,
+                "codigo_fipe": "025322-7",
+                "tipo": "SUV"
+            }
+        ]
+    },
+    {
+        "marca": "Hyundai",
+        "idMarca": 26,
+        "modelos": [
+            {
+                "modelo": "HB20",
+                "disponivel": true,
+                "codigo_fipe": "015234-0",
+                "tipo": "Hatch"
+            },
+            {
+                "modelo": "Creta",
+                "disponivel": true,
+                "codigo_fipe": "015244-7",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Kona",
+                "disponivel": true,
+                "codigo_fipe": "015232-3",
+                "tipo": "SUV"
+            }
+        ]
+    },
+    {
+        "marca": "Toyota",
+        "idMarca": 56,
+        "modelos": [
+            {
+                "modelo": "Corolla",
+                "disponivel": true,
+                "codigo_fipe": "002183-0",
+                "tipo": "Sedã"
+            },
+            {
+                "modelo": "Hilux",
+                "disponivel": true,
+                "codigo_fipe": "002160-1",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "RAV4",
+                "disponivel": true,
+                "codigo_fipe": "002217-9",
+                "tipo": "SUV"
+            }
+        ]
+    },
+    {
+        "marca": "Nissan",
+        "idMarca": 43,
+        "modelos": [
+            {
+                "modelo": "Kicks",
+                "disponivel": true,
+                "codigo_fipe": "023186-0",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Sentra",
+                "disponivel": true,
+                "codigo_fipe": "023189-4",
+                "tipo": "Sedã"
+            },
+            {
+                "modelo": "Frontier",
+                "disponivel": true,
+                "codigo_fipe": "023183-5",
+                "tipo": "SUV"
+            }
+        ]
+    },
+    {
+        "marca": "Honda",
+        "idMarca": 25,
+        "modelos": [
+            {
+                "modelo": "Civic",
+                "disponivel": true,
+                "codigo_fipe": "014090-2",
+                "tipo": "Sedã"
+            },
+            {
+                "modelo": "HR-V",
+                "disponivel": true,
+                "codigo_fipe": "014088-0",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Fit",
+                "disponivel": true,
+                "codigo_fipe": "014081-3",
+                "tipo": "Hatch"
+            }
+        ]
+    },
+    {
+        "marca": "Jeep",
+        "idMarca": 29,
+        "modelos": [
+            {
+                "modelo": "Compass",
+                "disponivel": true,
+                "codigo_fipe": "017047-0",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Renegade",
+                "disponivel": true,
+                "codigo_fipe": "017103-4",
+                "tipo": "SUV"
+            },
+            {
+                "modelo": "Commander",
+                "disponivel": true,
+                "codigo_fipe": "017098-4",
+                "tipo": "SUV"
+            }
+        ]
+    }
+]
+

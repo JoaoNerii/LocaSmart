@@ -4,7 +4,8 @@ import os
 from CRUD_Registro import adicionar_usuario
 
 usuarios = "usuarios.json"
-carros_locados = "carros.json"
+carros_locados = "carros_locados.json"
+carros_lista = "carros.json"
 
 def carregar_dados(arquivo):
     if os.path.exists(arquivo):
@@ -48,8 +49,27 @@ def menu_locacao():
 def menu_buscar_carro():
     print('======= << LocaSmart >> =======')
     print('| [1] Buscar Carros por Marca |')
-    print('| [2] Buscar Carros por Preco |')
-    print('| [3] Buscar Carros por Tipo  |')
+    print('| [2] Buscar Carros por Tipo  |')
     print('| [0] Sair                    |')
     print('-------------------------------\n')
 
+def info_carro(marca_carro, modelo_carro):
+    carros = carregar_dados(carros_lista)
+    for carro in carros:
+        if carro['marca'] == marca_carro.capitalize():
+            id_marca = carro['idMarca']
+            for modelo in carro['modelos']:
+                if modelo['modelo'] == modelo_carro.capitalize():
+                    print(modelo['modelo'])
+                    print(modelo['codigo_fipe'])
+                    codigo_fipe = modelo['codigo_fipe']
+
+    resposta = requests.get(f'https://fipe.parallelum.com.br/api/v2/cars/{codigo_fipe}/years/2021-1')
+    if resposta.status_code == 200:
+        info_fipe = resposta.json()
+        print(info_fipe)
+    else:
+        print(f'Erro: {resposta.status_code}')
+
+
+info_carro('volkswagen','gol')
