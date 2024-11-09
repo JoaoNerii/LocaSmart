@@ -2,6 +2,7 @@ import json
 import os
 
 arquivo = "usuarios.json"
+carros = "carros.json"
 
 class Cor:
     VERMELHO = '\033[91m'
@@ -22,6 +23,17 @@ def carregar_dados():
     return []
 
 
+def carregar_carros():
+    if os.path.exists(carros):
+        try:
+            with open(carros, "r") as infile:
+                return json.load(infile)
+        except json.JSONDecodeError:
+            print(f"{Cor.VERMELHO}Erro ao carregar o arquivo JSON.{Cor.RESET}")
+            return []
+    return []
+
+
 def salvar_dados(dados):
     with open(arquivo, 'w') as outfile:
         json.dump(dados, outfile, indent=4)
@@ -30,21 +42,22 @@ def salvar_dados(dados):
 def mostrar_menu():
     print(f"=========== {Cor.CIANO}LocaSmart{Cor.RESET} ============")
     print(f"| [{Cor.CIANO}1{Cor.RESET}] - Fazer Login              |")
-    print(f"| [{Cor.CIANO}2{Cor.RESET}] - Ver painel de alugueis   |")
-    print(f"| [{Cor.CIANO}3{Cor.RESET}] - Alugar Carro             |")
-    print(f"| [{Cor.CIANO}4{Cor.RESET}] - Devolver Carro           |")
+    print(f"| [{Cor.CIANO}2{Cor.RESET}] - Ver painel de seguros    |")
+    print(f"| [{Cor.CIANO}3{Cor.RESET}] - Contratar Seguro         |")
+    print(f"| [{Cor.CIANO}4{Cor.RESET}] - Cancelar Seguro          |")
     print(f"| [{Cor.CIANO}5{Cor.RESET}] - Sair                     |")
     print("==================================")
 
+
 def fazer_login(dados):
-    nome = input(f"{Cor.AMARELO}Digite seu nome completo: {Cor.RESET}")
     cpf = input(f"{Cor.AMARELO}Digite seu CPF: {Cor.RESET}")
+    senha = input(f"{Cor.AMARELO}Digite sua senha: {Cor.RESET}")
 
     for usuario in dados:
-        if usuario["nome"] == nome and usuario["cpf"] == cpf:
+        if usuario["cpf"] == cpf and usuario["senha"] == senha:
             print(f"{Cor.VERDE}Bem-vindo, {usuario['nome']}!{Cor.RESET}")
             return usuario
-    print(f"{Cor.VERMELHO}Nome ou CPF não encontrados!{Cor.RESET}")
+    print(f"{Cor.VERMELHO}CPF ou senha incorretos!{Cor.RESET}")
     return None
 
 
@@ -53,47 +66,47 @@ def exibir_painel(usuario):
         print(f"\n{Cor.CIANO}=====================")
         print(f"  Painel de {usuario['nome']}")
         print("====================={Cor.RESET}")
-        if usuario["carro_alugado"]:
-            print(f"Você está alugando um carro: {usuario['carro_modelo']} - Placa: {usuario['carro_placa']}")
+        if usuario.get("seguro_contratado", False):
+            print(f"Você possui um seguro contratado para o carro: {usuario['carro_modelo']} - Placa: {usuario['carro_placa']}")
         else:
-            print("Você não tem nenhum carro alugado no momento.")
+            print("Você não possui seguro contratado no momento.")
     else:
         print(f"{Cor.VERMELHO}Você precisa estar logado para acessar o painel.{Cor.RESET}")
 
 
-def alugar_carro(usuario, dados):
+def contratar_seguro(usuario, dados):
     if usuario:
-        if usuario["carro_alugado"]:
-            print(f"{Cor.VERMELHO}Você já tem um carro alugado!{Cor.RESET}")
+        if usuario.get("seguro_contratado", False):
+            print(f"{Cor.VERMELHO}Você já possui um seguro contratado!{Cor.RESET}")
             return
 
-        modelo_carro = input(f"{Cor.AMARELO}Digite o modelo do carro que deseja alugar: {Cor.RESET}")
+        modelo_carro = input(f"{Cor.AMARELO}Digite o modelo do carro para contratar o seguro: {Cor.RESET}")
         placa_carro = input(f"{Cor.AMARELO}Digite a placa do carro: {Cor.RESET}")
 
-        usuario["carro_alugado"] = True
+        usuario["seguro_contratado"] = True
         usuario["carro_modelo"] = modelo_carro
         usuario["carro_placa"] = placa_carro
 
         salvar_dados(dados)
-        print(f"{Cor.VERDE}Carro {modelo_carro} com placa {placa_carro} alugado com sucesso!{Cor.RESET}")
+        print(f"{Cor.VERDE}Seguro para o carro {modelo_carro} com placa {placa_carro} contratado com sucesso!{Cor.RESET}")
     else:
-        print(f"{Cor.VERMELHO}Você precisa estar logado para alugar um carro.{Cor.RESET}")
+        print(f"{Cor.VERMELHO}Você precisa estar logado para contratar um seguro.{Cor.RESET}")
 
 
-def devolver_carro(usuario, dados):
+def cancelar_seguro(usuario, dados):
     if usuario:
-        if not usuario["carro_alugado"]:
-            print(f"{Cor.VERMELHO}Você não tem um carro alugado para devolver.{Cor.RESET}")
+        if not usuario.get("seguro_contratado", False):
+            print(f"{Cor.VERMELHO}Você não possui um seguro para cancelar.{Cor.RESET}")
             return
 
-        usuario["carro_alugado"] = False
+        usuario["seguro_contratado"] = False
         usuario["carro_modelo"] = None
         usuario["carro_placa"] = None
 
         salvar_dados(dados)
-        print(f"{Cor.VERDE}Carro devolvido com sucesso!{Cor.RESET}")
+        print(f"{Cor.VERDE}Seguro cancelado com sucesso!{Cor.RESET}")
     else:
-        print(f"{Cor.VERMELHO}Você precisa estar logado para devolver um carro.{Cor.RESET}")
+        print(f"{Cor.VERMELHO}Você precisa estar logado para cancelar um seguro.{Cor.RESET}")
 
 
 def main():
@@ -110,9 +123,9 @@ def main():
             case '2':
                 exibir_painel(usuario_logado)
             case '3':
-                alugar_carro(usuario_logado, dados)
+                contratar_seguro(usuario_logado, dados)
             case '4':
-                devolver_carro(usuario_logado, dados)
+                cancelar_seguro(usuario_logado, dados)
             case '5':
                 print(f"{Cor.CIANO}Saindo... Até logo!{Cor.RESET}")
                 break
