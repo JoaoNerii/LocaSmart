@@ -57,19 +57,29 @@ def info_carro(marca_carro, modelo_carro):
     carros = carregar_dados(carros_lista)
     for carro in carros:
         if carro['marca'] == marca_carro.capitalize():
-            id_marca = carro['idMarca']
             for modelo in carro['modelos']:
                 if modelo['modelo'] == modelo_carro.capitalize():
-                    print(modelo['modelo'])
-                    print(modelo['codigo_fipe'])
                     codigo_fipe = modelo['codigo_fipe']
 
-    resposta = requests.get(f'https://fipe.parallelum.com.br/api/v2/cars/{codigo_fipe}/years/2021-1')
-    if resposta.status_code == 200:
-        info_fipe = resposta.json()
-        print(info_fipe)
+    resposta_ano = requests.get(f'https://fipe.parallelum.com.br/api/v2/cars/{codigo_fipe}/years')
+    if resposta_ano.status_code == 200:
+        info_ano = resposta_ano.json()
+        ano_carro = ''
+        for ano in info_ano:
+            if '32000' in ano['code']:
+                continue
+            else:
+                ano_carro = ano['code']
+                break
     else:
-        print(f'Erro: {resposta.status_code}')
+        print(f'Erro: {resposta_ano.status_code}')
+
+    resposta_carros = requests.get(f'https://fipe.parallelum.com.br/api/v2/cars/{codigo_fipe}/years/{ano_carro}')
+    if resposta_carros.status_code == 200:
+        info_carros = resposta_carros.json()
+        print(f'Marca: {info_carros['brand']}\nModelo: {info_carros['model']}\nAno: {info_carros['modelYear']}\nCombustivel: {info_carros['fuel']}')
+    else:
+        print(f'Erro: {resposta_carros.status_code}')
 
 
-info_carro('volkswagen','gol')
+info_carro('ford','ranger')
