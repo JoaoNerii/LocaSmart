@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+import time
 from CRUD_Registro import adicionar_usuario
 
 usuarios = "usuarios.json"
@@ -50,6 +51,7 @@ def menu_buscar_carro():
     print('======= << LocaSmart >> =======')
     print('| [1] Buscar Carros por Marca |')
     print('| [2] Buscar Carros por Tipo  |')
+    print('| [2] Listar Todos os Modelos |')
     print('| [0] Sair                    |')
     print('-------------------------------\n')
 
@@ -77,9 +79,44 @@ def info_carro(marca_carro, modelo_carro):
     resposta_carros = requests.get(f'https://fipe.parallelum.com.br/api/v2/cars/{codigo_fipe}/years/{ano_carro}')
     if resposta_carros.status_code == 200:
         info_carros = resposta_carros.json()
-        print(f'Marca: {info_carros['brand']}\nModelo: {info_carros['model']}\nAno: {info_carros['modelYear']}\nCombustivel: {info_carros['fuel']}')
+        valor_carro_str = info_carros['price'].replace('R$', '').replace('.', '').replace(',', '.').strip()
+        valor_carro = float(valor_carro_str) * 0.002
+
+        print(f'Marca: {info_carros['brand']}\nModelo: {info_carros['model']}\nAno: {info_carros['modelYear']}\nCombustivel: {info_carros['fuel']}\nValor do Aluguel: {valor_carro}')
     else:
         print(f'Erro: {resposta_carros.status_code}')
 
 
-info_carro('ford','ranger')
+def locar_carro():
+    while True:
+        menu_locacao()
+        res_menu = int(input('Selecione: '))
+        if res_menu == 0:
+            break
+        elif res_menu == 1:
+            menu_buscar_carro()
+            res_busca = int(input('Selecione: '))
+            if res_busca == 0:
+                break
+            elif res_busca == 1:
+                carros = carregar_dados(carros_lista)
+                marca_busca = input("Digite a marca que deseja: ").capitalize()
+                modelos_disp = []
+                for carro in carros:
+                    if carro['marca'] == marca_busca:
+                        for modelo in carro['modelos']:
+                            if modelo['disponivel']:
+                                modelos_disp.append(modelo['modelo'])
+                if not modelos_disp:
+                    print("Sem carros disponiveis.")
+                else:
+                    for modelo in modelos_disp:
+                        print(modelo)
+                        modelo_sel = input("Selecione o modelo que deseja: ").capitalize()
+                        info_carro(marca_busca,modelo_sel)
+                        selecionar = input("Deseja alugar este carro: ")
+
+
+
+locar_carro()
+

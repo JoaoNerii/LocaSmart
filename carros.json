@@ -19,7 +19,7 @@
                 "modelo": "Virtus",
                 "disponivel": true,
                 "codigo_fipe": "005484-4",
-                "tipo": "Sedã"
+                "tipo": "Sedan"
             }
         ]
     },
@@ -43,7 +43,7 @@
                 "modelo": "Cruze",
                 "disponivel": true,
                 "codigo_fipe": "004510-1",
-                "tipo": "Sedã"
+                "tipo": "Sedan"
             }
         ]
     },
@@ -79,7 +79,7 @@
                 "modelo": "Mustang",
                 "disponivel": true,
                 "codigo_fipe": "003480-0",
-                "tipo": "Sedã"
+                "tipo": "Sedan"
             },
             {
                 "modelo": "Territory",
@@ -151,7 +151,7 @@
                 "modelo": "Corolla",
                 "disponivel": true,
                 "codigo_fipe": "002183-0",
-                "tipo": "Sedã"
+                "tipo": "Sedan"
             },
             {
                 "modelo": "Hilux",
@@ -181,7 +181,7 @@
                 "modelo": "Sentra",
                 "disponivel": true,
                 "codigo_fipe": "023189-4",
-                "tipo": "Sedã"
+                "tipo": "Sedan"
             },
             {
                 "modelo": "Frontier",
@@ -199,7 +199,7 @@
                 "modelo": "Civic",
                 "disponivel": true,
                 "codigo_fipe": "014090-2",
-                "tipo": "Sedã"
+                "tipo": "Sedan"
             },
             {
                 "modelo": "HR-V",
