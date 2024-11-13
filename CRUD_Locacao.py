@@ -26,7 +26,7 @@ def checar_cpf(cpf):
     dados_usuario = carregar_dados(usuarios)
     for usuario in dados_usuario:
         if usuario['cpf'] == cpf:
-            return 'Usuario Existe!'
+            return True #Usuario Existe
 
     print('Usuario não encontrado. Realizando novo cadastro...')
     nome = input('Digite seu nome: ')
@@ -39,7 +39,7 @@ def checar_cpf(cpf):
     idade = input('Digite sua idade: ')
 
     adicionar_usuario(nome, cpf_novo, telefone, endereco, cep, email, senha, idade)
-    return 'Usuario Registrado!'
+    return True #Usuario Criado
 
 def menu_locacao():
     print('==== << LocaSmart >> ====')
@@ -86,38 +86,6 @@ def info_carro(marca_carro, modelo_carro):
     else:
         print(f'Erro: {resposta_carros.status_code}')
 
-
-def locar_carro():
-    while True:
-        menu_locacao()
-        res_menu = int(input('Selecione: '))
-        if res_menu == 0:
-            break
-        elif res_menu == 1:
-            menu_buscar_carro()
-            res_busca = int(input('Selecione: '))
-            if res_busca == 0:
-                break
-            elif res_busca == 1:
-                carros = carregar_dados(carros_lista)
-                marca_busca = input("Digite a marca que deseja: ").capitalize()
-                modelos_disp = []
-                for carro in carros:
-                    if carro['marca'] == marca_busca:
-                        for modelo in carro['modelos']:
-                            if modelo['disponivel']:
-                                modelos_disp.append(modelo['modelo'])
-                if not modelos_disp:
-                    print("Sem carros disponiveis.")
-                else:
-                    for modelo in modelos_disp:
-                        print(modelo)
-                        modelo_sel = input("Selecione o modelo que deseja: ").capitalize()
-                        info_carro(marca_busca,modelo_sel)
-                        selecionar = input("Deseja alugar este carro: ")
-
-
-
 def mostrar_veiculos():
     carros = carregar_dados(carros_lista)
     menu_buscar_carro()
@@ -134,7 +102,6 @@ def mostrar_veiculos():
         print('| [1] SUV                     |')
         print('| [2] Sedã                    |')
         print('| [3] Hatch                   |')
-        print('| [0] Sair                    |')
         print('-------------------------------\n')
 
         tipo = int(input("Selecione o tipo de carro que deseja buscar: "))
@@ -164,12 +131,84 @@ def mostrar_veiculos():
                 if modelo['disponivel']:
                     print(f"    Modelo: {modelo['modelos']} | Tipo: {modelo['tipo']}")
 
-mostrar_veiculos()
+def selecionar_veiculo(modelo, marca,cpf):
+    usuario_carro = carregar_dados(carros_locados)
+    dados_usuario = carregar_dados(usuarios)
+    info_carro(marca,modelo)
+    for usuario in dados_usuario:
+        if usuario['cpf'] == cpf:
+            novo_aluguel = {'nome': usuario['nome'], 'cpf': usuario['cpf'], 'modelo': modelo.capitalize(),'marca': marca.capitalize() ,'data': ''}
+    usuario_carro.append(novo_aluguel)
+    salvar_dados(usuario_carro, carros_locados)
+
+def alterar_veiculo(novo_modelo,nova_marca,cpf):
+    usuario_carro = carregar_dados(carros_locados)
+    info_carro(nova_marca,novo_modelo)
+    for usuario in usuario_carro:
+        if usuario['cpf'] == cpf:
+            usuario['modelo'] = novo_modelo
+            usuario['marca'] = nova_marca
+    salvar_dados(usuario_carro, carros_locados)
+
+def cancelar_locacao(cpf):
+    usuario_carro = carregar_dados(carros_locados)
+    for usuario in usuario_carro:
+        if usuario['cpf'] == cpf:
+            usuario_carro.remove(usuario)
+    salvar_dados(usuario_carro, carros_locados)
 
 
+def locar_carro():
+    cpf = input("Digite seu cpf: ")
+    checar_cpf(cpf)
+    while True:
+        menu_locacao()
+        res_menu = int(input('Selecione: '))
+        if res_menu == 0:
+            break
+        elif res_menu == 1:
+            while True:
+                mostrar_veiculos()
+                print('======= << LocaSmart >> =======')
+                print('| [1] Selecionar Veiculo      |')
+                print('| [2] Informações do Veiculo  |')
+                print('| [3] Buscar Novamente        |')
+                print('-------------------------------\n')
 
-                            
-                
+                selecionar = int(input("Selecione: "))
+                if selecionar == 3:
+                    continue
+                elif selecionar == 2:
+                    marca = input("Digite a marca do veiculo que deseja: ").capitalize()
+                    modelo = input("Digite a marca do veiculo que deseja: ").capitalize()
+                    info_carro(marca, modelo)
+                    print('======= << LocaSmart >> =======')
+                    print('| [1] Selecionar Veiculo      |')
+                    print('| [2] Buscar Novamente        |')
+                    print('-------------------------------\n')
+                    selecionar2 = int(input("Selecione: "))
+                    if selecionar2 == 1:
+                        selecionar_veiculo(modelo, marca, cpf)
+                    elif selecionar2 == 2:
+                        continue
+                elif selecionar == 1:
+                    marca = input("Digite a marca do veiculo que deseja: ").capitalize()
+                    modelo = input("Digite a marca do veiculo que deseja: ").capitalize()
+                    selecionar_veiculo(modelo, marca, cpf)
 
-                        
+                print('======= << LocaSmart >> =======')
+                print('| [1] Confirmar               |')
+                print('| [2] Trocar Veiculo          |')
+                print('| [3] Cancelar                |')
+                print('-------------------------------\n')
 
+                selecionar3 = int(input("Selecione: "))
+                if selecionar3 == 3:
+                    cancelar_locacao(cpf)
+                elif selecionar3 == 2:
+                    nova_marca = input("Digite a marca do veiculo para qual deseja alterar: ").capitalize()
+                    novo_modelo = input("Digite a marca do veiculo para qual deseja alterar: ").capitalize()
+                    alterar_veiculo(novo_modelo, nova_marca, cpf)
+                elif selecionar3 == 1:
+                    #seguro
+                    print("")
