@@ -51,7 +51,7 @@ def menu_buscar_carro():
     print('======= << LocaSmart >> =======')
     print('| [1] Buscar Carros por Marca |')
     print('| [2] Buscar Carros por Tipo  |')
-    print('| [2] Listar Todos os Modelos |')
+    print('| [3] Listar Todos os Modelos |')
     print('| [0] Sair                    |')
     print('-------------------------------\n')
 
@@ -118,5 +118,58 @@ def locar_carro():
 
 
 
-locar_carro()
+def mostrar_veiculos():
+    carros = carregar_dados(carros_lista)
+    menu_buscar_carro()
+    selecionar = int(input("Selecione: "))
+    if selecionar == 1:
+        marca = input("Digite a marca que deseja buscar: ").capitalize()
+        for carro in carros:
+            if marca == carro['marca']:
+                for modelo in carro['modelos']:
+                    if modelo['disponivel']:
+                        print(f"Modelo: {modelo['modelo']} | Tipo: {modelo['tipo']}")
+    elif selecionar == 2:
+        print('======= << LocaSmart >> =======')
+        print('| [1] SUV                     |')
+        print('| [2] Sedã                    |')
+        print('| [3] Hatch                   |')
+        print('| [0] Sair                    |')
+        print('-------------------------------\n')
+
+        tipo = int(input("Selecione o tipo de carro que deseja buscar: "))
+        if tipo == 1:
+            for carro in carros:
+                for modelo in carro['modelos']:
+                    if (modelo['disponivel'] and modelo['tipo'] == 'SUV'):
+                        print(f"Modelo: {modelo['modelo']} | Tipo: {modelo['tipo']}")
+        elif tipo == 2:
+            for carro in carros:
+                for modelo in carro['modelos']:
+                    if (modelo['disponivel'] and modelo['tipo'] == 'Sedan'):
+                        print(f"Modelo: {modelo['modelo']} | Tipo: {modelo['tipo']}")
+        elif tipo == 3:
+            for carro in carros:
+                for modelo in carro['modelos']:
+                    if (modelo['disponivel'] and modelo['tipo'] == 'Hatch'):
+                        print(f"Modelo: {modelo['modelo']} | Tipo: {modelo['tipo']}")
+
+        else:
+            print("Erro")
+
+    elif selecionar == 3:
+        for carro in carros:
+            print(f"Marca: {carro['marca']}")
+            for modelo in carro['modelos']:
+                if modelo['disponivel']:
+                    print(f"    Modelo: {modelo['modelos']} | Tipo: {modelo['tipo']}")
+
+mostrar_veiculos()
+
+
+
+                            
+                
+
+                        
 
