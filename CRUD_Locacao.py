@@ -159,6 +159,7 @@ def cancelar_locacao(cpf):
 
 
 def locar_carro():
+    dados_locacao = carregar_dados(carros_locados)
     cpf = input("Digite seu cpf: ")
     checar_cpf(cpf)
     while True:
@@ -180,7 +181,7 @@ def locar_carro():
                     continue
                 elif selecionar == 2:
                     marca = input("Digite a marca do veiculo que deseja: ").capitalize()
-                    modelo = input("Digite a marca do veiculo que deseja: ").capitalize()
+                    modelo = input("Digite o modelo do veiculo que deseja: ").capitalize()
                     info_carro(marca, modelo)
                     print('======= << LocaSmart >> =======')
                     print('| [1] Selecionar Veiculo      |')
@@ -193,7 +194,7 @@ def locar_carro():
                         continue
                 elif selecionar == 1:
                     marca = input("Digite a marca do veiculo que deseja: ").capitalize()
-                    modelo = input("Digite a marca do veiculo que deseja: ").capitalize()
+                    modelo = input("Digite o modelo do veiculo que deseja: ").capitalize()
                     selecionar_veiculo(modelo, marca, cpf)
 
                 print('======= << LocaSmart >> =======')
@@ -205,10 +206,28 @@ def locar_carro():
                 selecionar3 = int(input("Selecione: "))
                 if selecionar3 == 3:
                     cancelar_locacao(cpf)
+                    break
                 elif selecionar3 == 2:
                     nova_marca = input("Digite a marca do veiculo para qual deseja alterar: ").capitalize()
-                    novo_modelo = input("Digite a marca do veiculo para qual deseja alterar: ").capitalize()
+                    novo_modelo = input("Digite o modelo do veiculo para qual deseja alterar: ").capitalize()
                     alterar_veiculo(novo_modelo, nova_marca, cpf)
                 elif selecionar3 == 1:
-                    #seguro
-                    print("")
+                    print("\n")
+                print('======= << LocaSmart >> =======')
+                print('| [1] Concluir Locação        |')
+                print('| [2] Adicionar Seguro        |')
+                print('-------------------------------\n')
+                selecionar_final = int(input("Selecione: "))
+                if selecionar_final == 1:
+                    print("Locacao Concluida!")
+                    for dados in dados_locacao:
+                        if dados['cpf'] == cpf:
+                            print(f"Nome: {dados['nome']}\nModelo: {dados['modelo']}\nMarca: {dados['marca']}")
+                    exit()
+                elif selecionar_final == 2:
+                    #Adicionar seguro
+                    exit()
+                else:
+                    print("Erro")
+
+locar_carro()
