@@ -223,4 +223,4 @@ def menu():
             print(Fore.RED + "Opção inválida. Tente novamente.")
 
 # Executa o menu
-menu()
+

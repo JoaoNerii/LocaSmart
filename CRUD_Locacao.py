@@ -160,7 +160,7 @@ def cancelar_locacao(cpf):
 
 def locar_carro():
     dados_locacao = carregar_dados(carros_locados)
-    cpf = input("Digite seu cpf: ")
+    cpf = input("Confirme seu cpf: ")
     checar_cpf(cpf)
     while True:
         menu_locacao()
@@ -229,5 +229,3 @@ def locar_carro():
                     exit()
                 else:
                     print("Erro")
-
-locar_carro()
