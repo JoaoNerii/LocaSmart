@@ -150,7 +150,7 @@ def selecionar_veiculo(modelo, marca,cpf):
     info_carro(marca,modelo)
     for usuario in dados_usuario:
         if usuario['cpf'] == cpf:
-            novo_aluguel = {'nome': usuario['nome'], 'cpf': usuario['cpf'], 'modelo': modelo.capitalize(),'marca': marca.capitalize() ,'data': ''}
+            novo_aluguel = {'nome': usuario['nome'], 'cpf': usuario['cpf'], 'modelo': modelo.capitalize(),'marca': marca.capitalize() ,'data': '', 'seguro': False}
     usuario_carro.append(novo_aluguel)
     salvar_dados(usuario_carro, carros_locados)
 
