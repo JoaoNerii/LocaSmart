@@ -196,7 +196,7 @@ def excluir_devolucao():
         print(Fore.RED + "ID de devolução não encontrado.")
 
 # Menu para o usuário
-def menu():
+def menu_dev():
     while True:
         print("================LocaSmart===============")
         print(Fore.CYAN + "| [1] - Cadastrar Devolução            |")

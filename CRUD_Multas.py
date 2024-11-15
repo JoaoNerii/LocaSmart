@@ -13,7 +13,7 @@ class Cor:
 
 
 
-arquivo = os.path.join(os.path.dirname(__file__), 'usuarios.json')
+arquivo = os.path.join(os.path.dirname(__file__), 'multas.json')
 
 
 def carregar_usuarios():
@@ -91,36 +91,23 @@ def excluir_usuario(cpf):
 
 
 def menu_inicial():
-    print("=" * 11, Cor.CIANO + "LocaSmart" + Cor.RESET, "=" * 12)
+    print("=" * 13, Cor.CIANO + "LocaSmart" + Cor.RESET, "=" * 14)
     print(f"|  [{Cor.CIANO}1{Cor.RESET}] - Cadastrar nova infração     |\n"
           f"|  [{Cor.CIANO}2{Cor.RESET}] - Listar usuários/multas      |\n"
           f"|  [{Cor.CIANO}3{Cor.RESET}] - Atualizar usuário/multa     |\n"
           f"|  [{Cor.CIANO}4{Cor.RESET}] - Excluir usuário/multa       |\n"
           f"|  [{Cor.CIANO}0{Cor.RESET}] - Sair                        |")
+    print("=" * 38)
 
 
-def exibir_menu():
-    print("\nMULTAS:")
-    print("1. Multa por Atraso na Devolução")
-    print("2. Multa por Danos ao Veículo")
-    print("3. Multa por Violação de Cláusulas do Contrato")
-    print("4. Multa por Devolução em Local Diferente")
-    print("5. Multa por Perda de Acessórios")
-
-
-def main():
+def main_multas():
     while True:
         menu_inicial()
         opcao = int(input(Cor.CIANO + "Escolha uma opção: " + Cor.RESET))
         
         if opcao == 1:
-            exibir_menu()
-            resp=input("Deseja continuar? S/N ")
-            if resp == 'N' or resp == 'n':
-                print("Voltando...\n")
-                main()
             cpf = input("Digite o CPF do cliente: ")
-            multa = input("Digite a descrição da multa: ")
+            multa = input("Digite a multa a ser cadastrada: ")
             adicionar_multa(cpf, multa)
         
         elif opcao == 2:
@@ -130,13 +117,12 @@ def main():
             listar_multas()
         
         elif opcao == 3:
-            cpf = input("Digite o CPF do usuário para atualizar: ")
-            exibir_menu()
+            cpf = input("Digite o CPF do usuário para atualizar a multa: ")
             nova_multa = input("Digite a nova multa: ")
             atualizar_usuario(cpf, nova_multa)
         
         elif opcao == 4:
-            cpf = input("Digite o CPF do usuário a ser excluído: ")
+            cpf = input("Digite o CPF para que a multa seja excluída: ")
             excluir_usuario(cpf)
         
         elif opcao == 0:
@@ -147,6 +133,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main_multas()
 
   

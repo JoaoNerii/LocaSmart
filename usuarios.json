@@ -10,16 +10,6 @@
         "idade": "30"
     },
     {
-        "nome": "fulano",
-        "cpf": "456",
-        "telefone": "4456",
-        "endereco": "456",
-        "cep": "456",
-        "email": "456",
-        "senha": "456",
-        "idade": "456"
-    },
-    {
         "nome": "1",
         "cpf": "2",
         "telefone": "3",

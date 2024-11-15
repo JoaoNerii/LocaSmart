@@ -19,7 +19,7 @@ while True:
         if login_adm == "adm" and senha_adm == "adm123":
             while True:
                 print("=" * 7, cor.CIANO + "Menu ADM | LocaSmart" + cor.RESET, "=" * 5)
-                print(f"|  [{cor.CIANO}1{cor.RESET}] - Listar Usuários         |\n|  [{cor.CIANO}2{cor.RESET}] - Atualizar Usuário       |\n|  [{cor.CIANO}3{cor.RESET}] - Excluir Usuário         |\n|  [{cor.CIANO}0{cor.RESET}] - Voltar                  |")
+                print(f"|  [{cor.CIANO}1{cor.RESET}] - Listar Usuários         |\n|  [{cor.CIANO}2{cor.RESET}] - Atualizar Usuário       |\n|  [{cor.CIANO}3{cor.RESET}] - Excluir Usuário         |\n|  [{cor.CIANO}4{cor.RESET}] - Multas                  |\n|  [{cor.CIANO}5{cor.RESET}] - Devoluções              |\n|  [{cor.CIANO}0{cor.RESET}] - Voltar                  |")
                 print("=" * 34)
                 opcao = int(input(cor.CIANO + "Escolha uma opção: " + cor.RESET))
                 match (opcao):
@@ -32,6 +32,10 @@ while True:
                         atualizar_usuario()
                     case 3:
                         excluir_usuario()
+                    case 4:
+                        main_multas()
+                    case 5:
+                        menu_dev()
                     case 0:
                         print("=" * 9)
                         print("Saindo...")
@@ -65,7 +69,7 @@ while True:
                     cpf = input("Digite seu CPF: ")
                     senha = input("Digite sua Senha: ")
                     usuarioLogado = login_usuario(cpf, senha)
-                    if usuarioLogado:
+                    if usuarioLogado:                       
                         locar_carro()
                     else:
                         ("CPF Ou Senha Incorretos...")

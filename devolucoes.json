@@ -5,5 +5,12 @@
         "cpf": "132.444.444-44",
         "data_devolucao": "12-12-2024",
         "danos": "nao"
+    },
+    "2": {
+        "carro_id": "Hb20",
+        "cliente_id": "fulano",
+        "cpf": "456.456.456-45",
+        "data_devolucao": "12-12-2024",
+        "danos": "nenhum"
     }
 }

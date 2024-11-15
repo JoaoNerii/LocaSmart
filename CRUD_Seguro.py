@@ -1,5 +1,6 @@
 import json
 import os
+from CRUD_Registro import *
 
 arquivo = "usuarios.json"
 carros = "carros.json"
@@ -39,29 +40,30 @@ def salvar_dados(dados):
         json.dump(dados, outfile, indent=4)
 
 
-def mostrar_menu():
+def menu_seguro():
+    dados = carregar_dados()
     print(f"=========== {Cor.CIANO}LocaSmart{Cor.RESET} ============")
-    print(f"| [{Cor.CIANO}1{Cor.RESET}] - Fazer Login              |")
-    print(f"| [{Cor.CIANO}2{Cor.RESET}] - Ver painel de seguros    |")
-    print(f"| [{Cor.CIANO}3{Cor.RESET}] - Contratar Seguro         |")
-    print(f"| [{Cor.CIANO}4{Cor.RESET}] - Cancelar Seguro          |")
-    print(f"| [{Cor.CIANO}5{Cor.RESET}] - Sair                     |")
+    print(f"| [{Cor.CIANO}1{Cor.RESET}] - Ver painel de seguros    |")
+    print(f"| [{Cor.CIANO}2{Cor.RESET}] - Contratar Seguro         |")
+    print(f"| [{Cor.CIANO}3{Cor.RESET}] - Cancelar Seguro          |")
+    print(f"| [{Cor.CIANO}0{Cor.RESET}] - Sair                     |")
     print("==================================")
+    opcao = input(f"{Cor.AMARELO}Escolha a opção: {Cor.RESET}")
+
+    match opcao:
+        case '1':
+            exibir_painel()
+        case '2':
+            contratar_seguro(dados)
+        case '3':
+            cancelar_seguro(dados)
+        case '0':
+            print(f"{Cor.CIANO}Saindo... Até logo!{Cor.RESET}")
+        case _:
+            print(f"{Cor.VERMELHO}Opção inválida! Tente novamente.{Cor.RESET}")
 
 
-def fazer_login(dados):
-    cpf = input(f"{Cor.AMARELO}Digite seu CPF: {Cor.RESET}")
-    senha = input(f"{Cor.AMARELO}Digite sua senha: {Cor.RESET}")
-
-    for usuario in dados:
-        if usuario["cpf"] == cpf and usuario["senha"] == senha:
-            print(f"{Cor.VERDE}Bem-vindo, {usuario['nome']}!{Cor.RESET}")
-            return usuario
-    print(f"{Cor.VERMELHO}CPF ou senha incorretos!{Cor.RESET}")
-    return None
-
-
-def exibir_painel(usuario):
+def exibir_painel(usuario): #ADM
     if usuario:
         print(f"\n{Cor.CIANO}=====================")
         print(f"  Painel de {usuario['nome']}")
@@ -107,31 +109,3 @@ def cancelar_seguro(usuario, dados):
         print(f"{Cor.VERDE}Seguro cancelado com sucesso!{Cor.RESET}")
     else:
         print(f"{Cor.VERMELHO}Você precisa estar logado para cancelar um seguro.{Cor.RESET}")
-
-
-def main():
-    dados = carregar_dados()
-    usuario_logado = None
-
-    while True:
-        mostrar_menu()
-        opcao = input(f"{Cor.AMARELO}Escolha a opção: {Cor.RESET}")
-
-        match opcao:
-            case '1':
-                usuario_logado = fazer_login(dados)
-            case '2':
-                exibir_painel(usuario_logado)
-            case '3':
-                contratar_seguro(usuario_logado, dados)
-            case '4':
-                cancelar_seguro(usuario_logado, dados)
-            case '5':
-                print(f"{Cor.CIANO}Saindo... Até logo!{Cor.RESET}")
-                break
-            case _:
-                print(f"{Cor.VERMELHO}Opção inválida! Tente novamente.{Cor.RESET}")
-
-
-if __name__ == "__main__":
-    main()

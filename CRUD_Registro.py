@@ -1,5 +1,7 @@
 import json
 import os
+from CRUD_Devolucao import *
+from CRUD_Multas import *
 
 arquivo = "usuarios.json"
 
@@ -108,6 +110,7 @@ def login_usuario(cpf, senha):
     return False
 
 def menuRegistro():
+    global cpf_logado 
     while True:
         print("=" * 11, cor.CIANO + "LocaSmart" + cor.RESET, "=" * 12)
         print(f"|  [{cor.CIANO}1{cor.RESET}] - Menu ADM                |\n|  [{cor.CIANO}2{cor.RESET}] - Login/Cadastro          |\n|  [{cor.CIANO}0{cor.RESET}] - Sair                    |")
@@ -121,7 +124,7 @@ def menuRegistro():
             if login_adm == "adm" and senha_adm == "adm123":
                 while True:
                     print("=" * 7, cor.CIANO + "Menu ADM | LocaSmart" + cor.RESET, "=" * 5)
-                    print(f"|  [{cor.CIANO}1{cor.RESET}] - Listar Usuários         |\n|  [{cor.CIANO}2{cor.RESET}] - Atualizar Usuário       |\n|  [{cor.CIANO}3{cor.RESET}] - Excluir Usuário         |\n|  [{cor.CIANO}0{cor.RESET}] - Voltar                  |")
+                    print(f"|  [{cor.CIANO}1{cor.RESET}] - Listar Usuários         |\n|  [{cor.CIANO}2{cor.RESET}] - Atualizar Usuário       |\n|  [{cor.CIANO}3{cor.RESET}] - Excluir Usuário         |\n|  [{cor.CIANO}4{cor.RESET}] - Multas             |\n|  [{cor.CIANO}0{cor.RESET}] - Voltar                  |")
                     print("=" * 34)
                     opcao = int(input(cor.CIANO + "Escolha uma opção: " + cor.RESET))
                     match (opcao):
@@ -134,6 +137,8 @@ def menuRegistro():
                             atualizar_usuario()
                         case 3:
                             excluir_usuario()
+                        case 4:
+                            main_multas()
                         case 0:
                             print("=" * 9)
                             print("Saindo...")
@@ -164,9 +169,8 @@ def menuRegistro():
                         idade = input("Digite sua idade: ")
                         adicionar_usuario(nome, cpf, telefone, endereco, cep, email, senha, idade)
                     case 2:
-                        cpf = input("Digite seu CPF: ")
-                        senha = input("Digite sua Senha: ")
-                        login_usuario(cpf, senha)
+                        cpf_logado = input("Digite seu CPF: ")
+                        login_usuario(cpf_logado, senha)
                     case 0:
                         print("=" * 13)
                         print(f"| {cor.CIANO}Saindo...{cor.RESET} |")

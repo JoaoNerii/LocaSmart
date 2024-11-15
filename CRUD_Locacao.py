@@ -3,6 +3,7 @@ import json
 import os
 import time
 from CRUD_Registro import adicionar_usuario
+from CRUD_Seguro import *
 
 usuarios = "usuarios.json"
 carros_locados = "carros_locados.json"
@@ -82,7 +83,7 @@ def info_carro(marca_carro, modelo_carro):
         valor_carro_str = info_carros['price'].replace('R$', '').replace('.', '').replace(',', '.').strip()
         valor_carro = float(valor_carro_str) * 0.002
 
-        print(f'Marca: {info_carros['brand']}\nModelo: {info_carros['model']}\nAno: {info_carros['modelYear']}\nCombustivel: {info_carros['fuel']}\nValor do Aluguel: {valor_carro}')
+        print(f'Marca: {info_carros['brand']}\nModelo: {info_carros['model']}\nAno: {info_carros['modelYear']}\nCombustivel: {info_carros['fuel']}\nValor do Aluguel: {valor_carro} / Dia')
     else:
         print(f'Erro: {resposta_carros.status_code}')
 
@@ -91,6 +92,18 @@ def mostrar_veiculos():
     menu_buscar_carro()
     selecionar = int(input("Selecione: "))
     if selecionar == 1:
+        print('=========== Marcas ============')
+        print('| Jeep                        |')
+        print('| Volkswagen                  |')
+        print('| Chevrolet                   |')
+        print('| Fiat                        |')
+        print('| Ford                        |')
+        print('| Renault                     |')
+        print('| Hyundai                     |')
+        print('| Toyota                      |')
+        print('| Nissan                      |')
+        print('| Honda                       |')
+        print('-------------------------------\n')
         marca = input("Digite a marca que deseja buscar: ").capitalize()
         for carro in carros:
             if marca == carro['marca']:
@@ -201,7 +214,7 @@ def locar_carro():
                 print('| [1] Confirmar               |')
                 print('| [2] Trocar Veiculo          |')
                 print('| [3] Cancelar                |')
-                print('-------------------------------\n')
+                print('===============================\n')
 
                 selecionar3 = int(input("Selecione: "))
                 if selecionar3 == 3:
@@ -225,7 +238,7 @@ def locar_carro():
                             print(f"Nome: {dados['nome']}\nModelo: {dados['modelo']}\nMarca: {dados['marca']}")
                     exit()
                 elif selecionar_final == 2:
-                    #Adicionar seguro
+                    menu_seguro()
                     exit()
                 else:
                     print("Erro")
