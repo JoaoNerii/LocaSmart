@@ -1,0 +1,26 @@
+[
+    {
+        "nome": "teste",
+        "cpf": "123",
+        "modelo": "Civic",
+        "marca": "Honda",
+        "data": "",
+        "seguro": false
+    },
+    {
+        "nome": "teste",
+        "cpf": "123",
+        "modelo": "Compass",
+        "marca": "Jeep",
+        "data": "",
+        "seguro": false
+    },
+    {
+        "nome": "teste",
+        "cpf": "123",
+        "modelo": "Compass",
+        "marca": "Jeep",
+        "data": "",
+        "seguro": false
+    }
+]

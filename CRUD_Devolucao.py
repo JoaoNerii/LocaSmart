@@ -3,6 +3,7 @@ import os
 import re
 from datetime import datetime
 from colorama import Fore, Style, init
+from CRUD_Registro import cor
 
 # Inicializa o colorama
 init(autoreset=True)
@@ -198,12 +199,12 @@ def excluir_devolucao():
 # Menu para o usuário
 def menu_dev():
     while True:
-        print("================LocaSmart===============")
-        print(Fore.CYAN + "| [1] - Cadastrar Devolução            |")
-        print(Fore.CYAN + "| [2] - Listar Devoluções por CPF      |")
-        print(Fore.CYAN + "| [3] - Atualizar Devolução            |")
-        print(Fore.CYAN + "| [4] - Excluir Devolução              |")
-        print(Fore.CYAN + "| [5] - Sair                           |")
+        print(f"=============== {cor.CIANO}LocaSmart{cor.RESET} ==============")
+        print(f"| [{cor.CIANO}1{cor.RESET}] - Cadastrar Devolução            |")
+        print(f"| [{cor.CIANO}2{cor.RESET}] - Listar Devoluções por CPF      |")
+        print(f"| [{cor.CIANO}3{cor.RESET}] - Atualizar Devolução            |")
+        print(f"| [{cor.CIANO}4{cor.RESET}] - Excluir Devolução              |")
+        print(f"| [{cor.CIANO}5{cor.RESET}] - Sair                           |")
         print("=" * 40)
         
         opcao = input(Fore.CYAN + "Escolha uma opção: ")

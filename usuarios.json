@@ -18,5 +18,15 @@
         "email": "3",
         "senha": "3",
         "idade": "3"
+    },
+    {
+        "nome": "Jo\u00e3o Neri",
+        "cpf": "123.123.123-12",
+        "telefone": "81 989898989",
+        "endereco": "Rua 123",
+        "cep": "12312-12",
+        "email": "jgsn@cesar.school",
+        "senha": "123",
+        "idade": "18"
     }
 ]

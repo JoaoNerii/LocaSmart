@@ -37,9 +37,9 @@ while True:
                     case 5:
                         menu_dev()
                     case 0:
-                        print("=" * 9)
-                        print("Saindo...")
-                        print("=" * 9)
+                        print("=" * 13)
+                        print("| Saindo... |")
+                        print("=" * 13)
                         break
         else:
             print("Login ou Senha Inválidos...")

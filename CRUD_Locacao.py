@@ -43,18 +43,18 @@ def checar_cpf(cpf):
     return True #Usuario Criado
 
 def menu_locacao():
-    print('==== << LocaSmart >> ====')
-    print('| [1] Locar Carro       |')
-    print('| [0] Sair              |')
-    print('-------------------------\n')
+    print(f'======= {cor.CIANO}LocaSmart{cor.RESET} =======')
+    print(f'| [{cor.CIANO}1{cor.RESET}] Locar Carro       |')
+    print(f'| [{cor.CIANO}0{cor.RESET}] Sair              |')
+    print('=========================\n')
 
 def menu_buscar_carro():
-    print('======= << LocaSmart >> =======')
-    print('| [1] Buscar Carros por Marca |')
-    print('| [2] Buscar Carros por Tipo  |')
-    print('| [3] Listar Todos os Modelos |')
-    print('| [0] Sair                    |')
-    print('-------------------------------\n')
+    print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+    print(f'| [{cor.CIANO}1{cor.RESET}] Buscar Carros por Marca |')
+    print(f'| [{cor.CIANO}2{cor.RESET}] Buscar Carros por Tipo  |')
+    print(f'| [{cor.CIANO}3{cor.RESET}] Listar Todos os Modelos |')
+    print(f'| [{cor.CIANO}0{cor.RESET}] Sair                    |')
+    print('===============================\n')
 
 def info_carro(marca_carro, modelo_carro):
     carros = carregar_dados(carros_lista)
@@ -92,18 +92,18 @@ def mostrar_veiculos():
     menu_buscar_carro()
     selecionar = int(input("Selecione: "))
     if selecionar == 1:
-        print('=========== Marcas ============')
-        print('| Jeep                        |')
-        print('| Volkswagen                  |')
-        print('| Chevrolet                   |')
-        print('| Fiat                        |')
-        print('| Ford                        |')
-        print('| Renault                     |')
-        print('| Hyundai                     |')
-        print('| Toyota                      |')
-        print('| Nissan                      |')
-        print('| Honda                       |')
-        print('-------------------------------\n')
+        print(f'=========== {cor.CIANO}Marcas{cor.RESET} ============')
+        print(f'| {cor.CIANO}Jeep{cor.RESET}                        |')
+        print(f'| {cor.CIANO}Volkswagen{cor.RESET}                  |')
+        print(f'| {cor.CIANO}Chevrolet{cor.RESET}                   |')
+        print(f'| {cor.CIANO}Fiat{cor.RESET}                        |')
+        print(f'| {cor.CIANO}Ford{cor.RESET}                        |')
+        print(f'| {cor.CIANO}Renault{cor.RESET}                     |')
+        print(f'| {cor.CIANO}Hyundai{cor.RESET}                     |')
+        print(f'| {cor.CIANO}Toyota{cor.RESET}                      |')
+        print(f'| {cor.CIANO}Nissan{cor.RESET}                      |')
+        print(f'| {cor.CIANO}Honda{cor.RESET}                       |')
+        print('===============================\n')
         marca = input("Digite a marca que deseja buscar: ").capitalize()
         for carro in carros:
             if marca == carro['marca']:
@@ -111,13 +111,13 @@ def mostrar_veiculos():
                     if modelo['disponivel']:
                         print(f"Modelo: {modelo['modelo']} | Tipo: {modelo['tipo']}")
     elif selecionar == 2:
-        print('======= << LocaSmart >> =======')
-        print('| [1] SUV                     |')
-        print('| [2] Sedã                    |')
-        print('| [3] Hatch                   |')
-        print('-------------------------------\n')
+        print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+        print(f'| [{cor.CIANO}1{cor.RESET}] SUV                     |')
+        print(f'| [{cor.CIANO}2{cor.RESET}] Sedã                    |')
+        print(f'| [{cor.CIANO}3{cor.RESET}] Hatch                   |')
+        print('===============================\n')
 
-        tipo = int(input("Selecione o tipo de carro que deseja buscar: "))
+        tipo = int(input(f"{cor.CIANO}Selecione o tipo de carro que deseja buscar: {cor.RESET}"))
         if tipo == 1:
             for carro in carros:
                 for modelo in carro['modelos']:
@@ -183,53 +183,53 @@ def locar_carro():
         elif res_menu == 1:
             while True:
                 mostrar_veiculos()
-                print('======= << LocaSmart >> =======')
-                print('| [1] Selecionar Veiculo      |')
-                print('| [2] Informações do Veiculo  |')
-                print('| [3] Buscar Novamente        |')
-                print('-------------------------------\n')
+                print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+                print(f'| [{cor.CIANO}1{cor.RESET}] Selecionar Veiculo      |')
+                print(f'| [{cor.CIANO}2{cor.RESET}] Informações do Veiculo  |')
+                print(f'| [{cor.CIANO}3{cor.RESET}] Buscar Novamente        |')
+                print('===============================\n')
 
-                selecionar = int(input("Selecione: "))
+                selecionar = int(input(f"{cor.CIANO}Selecione a opção: {cor.RESET}"))
                 if selecionar == 3:
                     continue
                 elif selecionar == 2:
                     marca = input("Digite a marca do veiculo que deseja: ").capitalize()
                     modelo = input("Digite o modelo do veiculo que deseja: ").capitalize()
                     info_carro(marca, modelo)
-                    print('======= << LocaSmart >> =======')
-                    print('| [1] Selecionar Veiculo      |')
-                    print('| [2] Buscar Novamente        |')
-                    print('-------------------------------\n')
-                    selecionar2 = int(input("Selecione: "))
+                    print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+                    print(f'| [{cor.CIANO}1{cor.RESET}] Selecionar Veiculo      |')
+                    print(f'| [{cor.CIANO}2{cor.RESET}] Buscar Novamente        |')
+                    print('===============================\n')
+                    selecionar2 = int(input(f"{cor.CIANO}Selecione a opção: {cor.RESET}"))
                     if selecionar2 == 1:
                         selecionar_veiculo(modelo, marca, cpf)
                     elif selecionar2 == 2:
                         continue
                 elif selecionar == 1:
-                    marca = input("Digite a marca do veiculo que deseja: ").capitalize()
-                    modelo = input("Digite o modelo do veiculo que deseja: ").capitalize()
+                    marca = input(f"{cor.CIANO}Digite a marca do veiculo que deseja: {cor.RESET}").capitalize()
+                    modelo = input(f"{cor.CIANO}Digite o modelo do veiculo que deseja: {cor.RESET}").capitalize()
                     selecionar_veiculo(modelo, marca, cpf)
 
-                print('======= << LocaSmart >> =======')
-                print('| [1] Confirmar               |')
-                print('| [2] Trocar Veiculo          |')
-                print('| [3] Cancelar                |')
+                print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+                print(f'| [{cor.CIANO}1{cor.RESET}] Confirmar               |')
+                print(f'| [{cor.CIANO}2{cor.RESET}] Trocar Veiculo          |')
+                print(f'| [{cor.CIANO}3{cor.RESET}] Cancelar                |')
                 print('===============================\n')
 
-                selecionar3 = int(input("Selecione: "))
+                selecionar3 = int(input(f"{cor.CIANO}Selecione a opção: {cor.RESET}"))
                 if selecionar3 == 3:
                     cancelar_locacao(cpf)
                     break
                 elif selecionar3 == 2:
-                    nova_marca = input("Digite a marca do veiculo para qual deseja alterar: ").capitalize()
-                    novo_modelo = input("Digite o modelo do veiculo para qual deseja alterar: ").capitalize()
+                    nova_marca = input(f"{cor.CIANO}Digite a marca do veiculo para qual deseja alterar: {cor.RESET}").capitalize()
+                    novo_modelo = input(f"{cor.CIANO}Digite o modelo do veiculo para qual deseja alterar: {cor.RESET}").capitalize()
                     alterar_veiculo(novo_modelo, nova_marca, cpf)
                 elif selecionar3 == 1:
                     print("\n")
-                print('======= << LocaSmart >> =======')
-                print('| [1] Concluir Locação        |')
-                print('| [2] Adicionar Seguro        |')
-                print('-------------------------------\n')
+                print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+                print(f'| [{cor.CIANO}1{cor.RESET}] Concluir Locação        |')
+                print(f'| [{cor.CIANO}2{cor.RESET}] Adicionar Seguro        |')
+                print('===============================\n')
                 selecionar_final = int(input("Selecione: "))
                 if selecionar_final == 1:
                     print("Locacao Concluida!")
