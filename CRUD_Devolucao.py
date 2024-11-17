@@ -5,14 +5,12 @@ from datetime import datetime
 from colorama import Fore, Style, init
 from CRUD_Registro import cor
 
-# Inicializa o colorama
 init(autoreset=True)
 
 arquivo = "devolucoes.json"
 arquivo_locacao = "locacoes.json"
 arquivo_multas = "multas.json"
 
-# Função para carregar dados do JSON
 def carregar_dados(arquivo):
     if os.path.exists(arquivo):
         try:
@@ -23,16 +21,13 @@ def carregar_dados(arquivo):
             return {}
     return {}
 
-# Função para salvar dados no JSON
 def salvar_dados(dados, arquivo):
     with open(arquivo, "w") as outfile:
         json.dump(dados, outfile, indent=4)
 
-# Função para gerar IDs automaticamente
 def gerar_id(dados):
     return max(map(int, dados.keys()), default=0) + 1
 
-# Função para registrar uma multa no CRUD de multas
 def registrar_multa(cliente_id):
     multas = carregar_dados(arquivo_multas)
     multa_id = gerar_id(multas)
@@ -43,32 +38,20 @@ def registrar_multa(cliente_id):
     salvar_dados(multas, arquivo_multas)
     print(Fore.RED + f"Uma multa foi gerada para o cliente {cliente_id} devido ao atraso na devolução.")
 
-# Função para validar o formato do CPF
-def validar_cpf(cpf):
-    padrao = r"^\d{3}\.\d{3}\.\d{3}-\d{2}$"
-    if not re.match(padrao, cpf):
-        print(Fore.RED + "Formato de CPF incorreto. O formato correto é XXX.XXX.XXX-XX.")
-        return False
-    return True
 
-# Função para validar o formato da data e verificar a validade da data em si
 def validar_data(data):
     padrao = r"^\d{2}-\d{2}-\d{4}$"
     if re.match(padrao, data):
         try:
-            # Tenta converter a data para garantir que o dia, mês e ano são válidos
             datetime.strptime(data, "%d-%m-%Y")
             return True
         except ValueError:
-            # Exibe mensagem caso a data seja inválida (exemplo: 30-02-2023)
             print(Fore.RED + "Data inválida. Verifique se o dia é válido para o mês e o ano informados.")
             return False
     else:
-        # Exibe mensagem caso o formato da data esteja incorreto
         print(Fore.RED + "Formato de data incorreto. O formato correto é DD-MM-AAAA.")
         return False
 
-# Função para cadastrar uma nova devolução
 def cadastrar_devolucao():
     devolucoes = carregar_dados(arquivo)
     locacoes = carregar_dados(arquivo_locacao)
@@ -76,19 +59,15 @@ def cadastrar_devolucao():
     carro_id = input(Fore.YELLOW + "Modelo do Carro: ")
     cliente_id = input(Fore.YELLOW + "Nome do Cliente: ")
 
-    # Solicita o CPF até que o formato esteja correto
     while True:
-        cpf = input(Fore.YELLOW + "CPF do Cliente (XXX.XXX.XXX-XX): ")
-        if validar_cpf(cpf):
-            break
+        cpf = input(Fore.YELLOW + "CPF do Cliente: ")
+        break
 
-    # Solicita a data de devolução até que o formato esteja correto
     while True:
         data_devolucao = input(Fore.YELLOW + "Data de Devolução (DD-MM-AAAA): ")
         if validar_data(data_devolucao):
             break
 
-    # Solicita que o usuário insira algo no campo "danos"
     while True:
         danos = input(Fore.YELLOW + "Descrição dos Danos (se houver): ")
         if danos.strip():
@@ -98,7 +77,6 @@ def cadastrar_devolucao():
     devolucao_id = gerar_id(devolucoes)
     print(Fore.CYAN + f"Seu ID é {devolucao_id}")
 
-    # Checar se há atraso na devolução
     locacao = locacoes.get(cliente_id)
     if locacao:
         data_fim_locacao = datetime.strptime(locacao["data_fim"], "%d-%m-%Y")
@@ -107,7 +85,6 @@ def cadastrar_devolucao():
         if data_devolucao_dt > data_fim_locacao:
             registrar_multa(cliente_id)
 
-    # Dados da devolução
     devolucao = {
         "carro_id": carro_id,
         "cliente_id": cliente_id,
@@ -120,15 +97,12 @@ def cadastrar_devolucao():
     salvar_dados(devolucoes, arquivo)
     print(Fore.GREEN + f"Devolução cadastrada com sucesso! ID da Devolução: {devolucao_id}")
 
-# Função para listar todas as devoluções de um cliente com base no CPF
 def listar_devolucoes_por_cpf():
     devolucoes = carregar_dados(arquivo)
     
-    # Solicita o CPF até que o formato esteja correto
     while True:
-        cpf = input(Fore.YELLOW + "Informe o CPF do Cliente para listar as devoluções (XXX.XXX.XXX-XX): ")
-        if validar_cpf(cpf):
-            break
+        cpf = input(Fore.YELLOW + "Informe o CPF do Cliente para listar as devoluções: ")
+        break
 
     encontrou = False
     for devolucao_id, devolucao in devolucoes.items():
@@ -143,7 +117,6 @@ def listar_devolucoes_por_cpf():
     if not encontrou:
         print(Fore.RED + "Nenhuma devolução encontrada para esse CPF.")
 
-# Função para atualizar uma devolução
 def atualizar_devolucao():
     devolucoes = carregar_dados(arquivo)
     devolucao_id = input(Fore.YELLOW + "Informe o ID da devolução que deseja atualizar: ")
@@ -152,19 +125,15 @@ def atualizar_devolucao():
         carro_id = input(Fore.YELLOW + "Novo ID do Carro: ")
         cliente_id = input(Fore.YELLOW + "Novo ID do Cliente: ")
 
-        # Solicita o CPF até que o formato esteja correto
         while True:
             cpf = input(Fore.YELLOW + "Novo CPF do Cliente (XXX.XXX.XXX-XX): ")
-            if validar_cpf(cpf):
-                break
+            break
 
-        # Solicita a data de devolução até que o formato esteja correto
         while True:
             data_devolucao = input(Fore.YELLOW + "Nova Data de Devolução (DD-MM-AAAA): ")
             if validar_data(data_devolucao):
                 break
 
-        # Solicita que o usuário insira algo no campo "danos"
         while True:
             danos = input(Fore.YELLOW + "Nova Descrição dos Danos (se houver): ")
             if danos.strip():
@@ -184,7 +153,6 @@ def atualizar_devolucao():
     else:
         print(Fore.RED + "ID de devolução não encontrado.")
 
-# Função para excluir uma devolução
 def excluir_devolucao():
     devolucoes = carregar_dados(arquivo)
     devolucao_id = input(Fore.YELLOW + "Informe o ID da devolução que deseja excluir: ")
@@ -196,7 +164,6 @@ def excluir_devolucao():
     else:
         print(Fore.RED + "ID de devolução não encontrado.")
 
-# Menu para o usuário
 def menu_dev():
     while True:
         print(f"=============== {cor.CIANO}LocaSmart{cor.RESET} ==============")
@@ -204,7 +171,7 @@ def menu_dev():
         print(f"| [{cor.CIANO}2{cor.RESET}] - Listar Devoluções por CPF      |")
         print(f"| [{cor.CIANO}3{cor.RESET}] - Atualizar Devolução            |")
         print(f"| [{cor.CIANO}4{cor.RESET}] - Excluir Devolução              |")
-        print(f"| [{cor.CIANO}5{cor.RESET}] - Sair                           |")
+        print(f"| [{cor.CIANO}0{cor.RESET}] - Sair                           |")
         print("=" * 40)
         
         opcao = input(Fore.CYAN + "Escolha uma opção: ")
@@ -217,11 +184,8 @@ def menu_dev():
             atualizar_devolucao()
         elif opcao == "4":
             excluir_devolucao()
-        elif opcao == "5":
+        elif opcao == "0":
             print(Fore.GREEN + "Saindo do sistema de devoluções...")
             break
         else:
             print(Fore.RED + "Opção inválida. Tente novamente.")
-
-# Executa o menu
-

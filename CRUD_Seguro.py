@@ -1,6 +1,5 @@
 import json
 import os
-from CRUD_Registro import *
 
 arquivo = "usuarios.json"
 carros = "carros.json"
@@ -40,72 +39,65 @@ def salvar_dados(dados):
         json.dump(dados, outfile, indent=4)
 
 
-def menu_seguro():
-    dados = carregar_dados()
+def mostrar_menu():
     print(f"=========== {Cor.CIANO}LocaSmart{Cor.RESET} ============")
-    print(f"| [{Cor.CIANO}1{Cor.RESET}] - Ver painel de seguros    |")
-    print(f"| [{Cor.CIANO}2{Cor.RESET}] - Contratar Seguro         |")
-    print(f"| [{Cor.CIANO}3{Cor.RESET}] - Cancelar Seguro          |")
+    print(f"| [{Cor.CIANO}1{Cor.RESET}] - Contratar Seguro         |")
+    print(f"| [{Cor.CIANO}2{Cor.RESET}] - Cancelar Seguro          |")
     print(f"| [{Cor.CIANO}0{Cor.RESET}] - Sair                     |")
     print("==================================")
-    opcao = input(f"{Cor.AMARELO}Escolha a opção: {Cor.RESET}")
-
-    match opcao:
-        case '1':
-            exibir_painel()
-        case '2':
-            contratar_seguro(dados)
-        case '3':
-            cancelar_seguro(dados)
-        case '0':
-            print(f"{Cor.CIANO}Saindo... Até logo!{Cor.RESET}")
-        case _:
-            print(f"{Cor.VERMELHO}Opção inválida! Tente novamente.{Cor.RESET}")
-
-
-def exibir_painel(usuario): #ADM
-    if usuario:
-        print(f"\n{Cor.CIANO}=====================")
-        print(f"  Painel de {usuario['nome']}")
-        print("====================={Cor.RESET}")
-        if usuario.get("seguro_contratado", False):
-            print(f"Você possui um seguro contratado para o carro: {usuario['carro_modelo']} - Placa: {usuario['carro_placa']}")
-        else:
-            print("Você não possui seguro contratado no momento.")
-    else:
-        print(f"{Cor.VERMELHO}Você precisa estar logado para acessar o painel.{Cor.RESET}")
 
 
 def contratar_seguro(usuario, dados):
-    if usuario:
-        if usuario.get("seguro_contratado", False):
-            print(f"{Cor.VERMELHO}Você já possui um seguro contratado!{Cor.RESET}")
-            return
+    modelo_carro = input(f"{Cor.AMARELO}Digite o modelo do carro para contratar o seguro: {Cor.RESET}")
 
-        modelo_carro = input(f"{Cor.AMARELO}Digite o modelo do carro para contratar o seguro: {Cor.RESET}")
-        placa_carro = input(f"{Cor.AMARELO}Digite a placa do carro: {Cor.RESET}")
+    print(f"\n{Cor.VERDE}Você está contratando um seguro para um(a) {modelo_carro}.{Cor.RESET}")
+    print(f"O Valor total do seguro é de {Cor.VERDE}R$ 250,00{Cor.RESET}\n")
 
-        usuario["seguro_contratado"] = True
-        usuario["carro_modelo"] = modelo_carro
-        usuario["carro_placa"] = placa_carro
-
-        salvar_dados(dados)
-        print(f"{Cor.VERDE}Seguro para o carro {modelo_carro} com placa {placa_carro} contratado com sucesso!{Cor.RESET}")
+    validacao_seguro = input("Deseja Contratar o seguro? (S/N) ")
+    
+    if validacao_seguro == "s" or validacao_seguro == "S":
+        print(f"{Cor.VERDE}Seguro contratado com sucesso!{Cor.RESET}")
+    elif validacao_seguro == "n" or validacao_seguro == "N":
+        print(f"{Cor.VERDE}Locação sem seguro concluída com sucesso...{Cor.RESET}")
     else:
-        print(f"{Cor.VERMELHO}Você precisa estar logado para contratar um seguro.{Cor.RESET}")
+        print("Opção Inválida")
+
+    usuario["seguro_contratado"] = True
+    usuario["carro_modelo"] = modelo_carro
+
+    salvar_dados(dados)
 
 
 def cancelar_seguro(usuario, dados):
-    if usuario:
-        if not usuario.get("seguro_contratado", False):
-            print(f"{Cor.VERMELHO}Você não possui um seguro para cancelar.{Cor.RESET}")
-            return
+    usuario["seguro_contratado"] = False
+    usuario["carro_modelo"] = None
 
-        usuario["seguro_contratado"] = False
-        usuario["carro_modelo"] = None
-        usuario["carro_placa"] = None
+    salvar_dados(dados)
+    print(f"{Cor.VERDE}Seguro cancelado com sucesso!{Cor.RESET}")
 
-        salvar_dados(dados)
-        print(f"{Cor.VERDE}Seguro cancelado com sucesso!{Cor.RESET}")
-    else:
-        print(f"{Cor.VERMELHO}Você precisa estar logado para cancelar um seguro.{Cor.RESET}")
+def main_seguro():
+    while True:
+        dados = carregar_dados()
+        mostrar_menu()
+        opcao = input(f"{Cor.AMARELO}Escolha a opção: {Cor.RESET}")
+
+        if dados:
+            usuario = dados[0]
+        else:
+            print(f"{Cor.VERMELHO}Nenhum usuário encontrado!{Cor.RESET}")
+            break
+
+        match (opcao):
+            case '1':
+                contratar_seguro(usuario, dados)
+            case '2':
+                cancelar_seguro(usuario, dados)
+            case '0':
+                print(f"{Cor.CIANO}Saindo...{Cor.RESET}")
+                break
+            case _:
+                print(f"{Cor.VERMELHO}Opção inválida! Tente novamente.{Cor.RESET}")
+
+
+if __name__ == "__main__":
+    main_seguro()

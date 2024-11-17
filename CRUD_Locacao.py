@@ -2,7 +2,7 @@ import requests
 import json
 import os
 import time
-from CRUD_Registro import adicionar_usuario
+from CRUD_Registro import *
 from CRUD_Seguro import *
 
 usuarios = "usuarios.json"
@@ -27,7 +27,7 @@ def checar_cpf(cpf):
     dados_usuario = carregar_dados(usuarios)
     for usuario in dados_usuario:
         if usuario['cpf'] == cpf:
-            return True #Usuario Existe
+            return True 
 
     print('Usuario não encontrado. Realizando novo cadastro...')
     nome = input('Digite seu nome: ')
@@ -40,7 +40,7 @@ def checar_cpf(cpf):
     idade = input('Digite sua idade: ')
 
     adicionar_usuario(nome, cpf_novo, telefone, endereco, cep, email, senha, idade)
-    return True #Usuario Criado
+    return True
 
 def menu_locacao():
     print(f'======= {cor.CIANO}LocaSmart{cor.RESET} =======')
@@ -52,7 +52,6 @@ def menu_buscar_carro():
     print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
     print(f'| [{cor.CIANO}1{cor.RESET}] Buscar Carros por Marca |')
     print(f'| [{cor.CIANO}2{cor.RESET}] Buscar Carros por Tipo  |')
-    print(f'| [{cor.CIANO}3{cor.RESET}] Listar Todos os Modelos |')
     print(f'| [{cor.CIANO}0{cor.RESET}] Sair                    |')
     print('===============================\n')
 
@@ -135,14 +134,7 @@ def mostrar_veiculos():
                         print(f"Modelo: {modelo['modelo']} | Tipo: {modelo['tipo']}")
 
         else:
-            print("Erro")
-
-    elif selecionar == 3:
-        for carro in carros:
-            print(f"Marca: {carro['marca']}")
-            for modelo in carro['modelos']:
-                if modelo['disponivel']:
-                    print(f"    Modelo: {modelo['modelos']} | Tipo: {modelo['tipo']}")
+            print(f"{cor.VERMELHO}Selecione uma opção válida!{cor.RESET}")
 
 def selecionar_veiculo(modelo, marca,cpf):
     usuario_carro = carregar_dados(carros_locados)
@@ -225,12 +217,11 @@ def locar_carro():
                     novo_modelo = input(f"{cor.CIANO}Digite o modelo do veiculo para qual deseja alterar: {cor.RESET}").capitalize()
                     alterar_veiculo(novo_modelo, nova_marca, cpf)
                 elif selecionar3 == 1:
-                    print("\n")
-                print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
-                print(f'| [{cor.CIANO}1{cor.RESET}] Concluir Locação        |')
-                print(f'| [{cor.CIANO}2{cor.RESET}] Adicionar Seguro        |')
-                print('===============================\n')
-                selecionar_final = int(input("Selecione: "))
+                    print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+                    print(f'| [{cor.CIANO}1{cor.RESET}] Concluir Locação        |')
+                    print(f'| [{cor.CIANO}2{cor.RESET}] Adicionar Seguro        |')
+                    print('===============================\n')
+                    selecionar_final = int(input("Selecione: "))
                 if selecionar_final == 1:
                     print("Locacao Concluida!")
                     for dados in dados_locacao:
@@ -238,7 +229,7 @@ def locar_carro():
                             print(f"Nome: {dados['nome']}\nModelo: {dados['modelo']}\nMarca: {dados['marca']}")
                     exit()
                 elif selecionar_final == 2:
-                    menu_seguro()
+                    main_seguro()
                     exit()
                 else:
                     print("Erro")

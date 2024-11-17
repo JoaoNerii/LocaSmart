@@ -7,20 +7,12 @@
         "cep": "123",
         "email": "123@email",
         "senha": "123",
-        "idade": "30"
+        "idade": "30",
+        "seguro_contratado": true,
+        "carro_modelo": "Ranger"
     },
     {
-        "nome": "1",
-        "cpf": "2",
-        "telefone": "3",
-        "endereco": "3",
-        "cep": "3",
-        "email": "3",
-        "senha": "3",
-        "idade": "3"
-    },
-    {
-        "nome": "Jo\u00e3o Neri",
+        "nome": "Joao Neri",
         "cpf": "123.123.123-12",
         "telefone": "81 989898989",
         "endereco": "Rua 123",
