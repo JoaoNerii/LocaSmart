@@ -214,7 +214,6 @@ def selecionar_data(data_inicio,data_fim,modeloU,marcaU):
 
 def locar_carro():
     dados_locacao = carregar_dados(carros_locados)
-    carros = carregar_dados(carros_lista)
     cpf = input("Confirme seu cpf: ")
     checar_cpf(cpf)
     while True:
@@ -276,6 +275,7 @@ def locar_carro():
                                 if selecionar_data(data_inicio, data_fim, usuario['modelo'],usuario['marca']):
                                     usuario['data'] = data_inicio
                                     print('Data disponível!')
+                                    salvar_dados(dados_locacao, carros_locados)
                                     break
                                 else:
                                     print('Data indisponível.')
