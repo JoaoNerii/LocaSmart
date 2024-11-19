@@ -3,13 +3,17 @@ import os
 import re
 from datetime import datetime
 from colorama import Fore, Style, init
-from CRUD_Registro import cor
 
 init(autoreset=True)
 
 arquivo = "devolucoes.json"
 arquivo_locacao = "locacoes.json"
 arquivo_multas = "multas.json"
+
+class cor:
+    VERMELHO = '\033[91m'
+    CIANO = '\033[96m'
+    RESET = '\033[0m'
 
 def carregar_dados(arquivo):
     if os.path.exists(arquivo):

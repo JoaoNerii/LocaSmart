@@ -9,6 +9,11 @@ usuarios = "usuarios.json"
 carros_locados = "carros_locados.json"
 carros_lista = "carros.json"
 
+class cor:
+    VERMELHO = '\033[91m'
+    CIANO = '\033[96m'
+    RESET = '\033[0m'
+
 def carregar_dados(arquivo):
     if os.path.exists(arquivo):
         try:
