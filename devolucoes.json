@@ -1,1 +1,9 @@
-{}
+{
+    "1": {
+        "carro_id": "fiat",
+        "cliente_id": "fracvu",
+        "cpf": "123.312.132-32",
+        "data_devolucao": "12-12-2024",
+        "danos": "nao"
+    }
+}
