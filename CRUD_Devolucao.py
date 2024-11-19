@@ -126,8 +126,8 @@ def atualizar_devolucao():
     devolucao_id = input(Fore.YELLOW + "Informe o ID da devolução que deseja atualizar: ")
 
     if devolucao_id in devolucoes:
-        carro_id = input(Fore.YELLOW + "Novo ID do Carro: ")
-        cliente_id = input(Fore.YELLOW + "Novo ID do Cliente: ")
+        carro_id = input(Fore.YELLOW + "Novo nome do Carro: ")
+        cliente_id = input(Fore.YELLOW + "Novo nome do Cliente: ")
 
         while True:
             cpf = input(Fore.YELLOW + "Novo CPF do Cliente (XXX.XXX.XXX-XX): ")
