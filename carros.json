@@ -7,19 +7,22 @@
                 "modelo": "Gol",
                 "disponivel": true,
                 "codigo_fipe": "005502-6",
-                "tipo": "Hatch"
+                "tipo": "Hatch",
+                "datas": []
             },
             {
                 "modelo": "T-Cross",
                 "disponivel": true,
                 "codigo_fipe": "005508-5",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Virtus",
                 "disponivel": true,
                 "codigo_fipe": "005484-4",
-                "tipo": "Sedan"
+                "tipo": "Sedan",
+                "datas": []
             }
         ]
     },
@@ -31,19 +34,22 @@
                 "modelo": "Onix",
                 "disponivel": true,
                 "codigo_fipe": "004513-6",
-                "tipo": "Hatch"
+                "tipo": "Hatch",
+                "datas": []
             },
             {
                 "modelo": "Tracker",
                 "disponivel": true,
                 "codigo_fipe": "004525-0",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Cruze",
                 "disponivel": true,
                 "codigo_fipe": "004510-1",
-                "tipo": "Sedan"
+                "tipo": "Sedan",
+                "datas": []
             }
         ]
     },
@@ -55,19 +61,22 @@
                 "modelo": "Cronos",
                 "disponivel": true,
                 "codigo_fipe": "001502-4",
-                "tipo": "Sedan"
+                "tipo": "Sedan",
+                "datas": []
             },
             {
                 "modelo": "Fastback",
                 "disponivel": true,
                 "codigo_fipe": "001572-5",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Pulse",
                 "disponivel": true,
                 "codigo_fipe": "001542-3",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             }
         ]
     },
@@ -79,19 +88,22 @@
                 "modelo": "Mustang",
                 "disponivel": true,
                 "codigo_fipe": "003480-0",
-                "tipo": "Sedan"
+                "tipo": "Sedan",
+                "datas": []
             },
             {
                 "modelo": "Territory",
                 "disponivel": true,
                 "codigo_fipe": "003478-9",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Ranger",
                 "disponivel": true,
                 "codigo_fipe": "003500-9",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             }
         ]
     },
@@ -103,19 +115,22 @@
                 "modelo": "Kwid",
                 "disponivel": true,
                 "codigo_fipe": "025329-4",
-                "tipo": "Hatch"
+                "tipo": "Hatch",
+                "datas": []
             },
             {
                 "modelo": "Sandero",
                 "disponivel": true,
                 "codigo_fipe": "025309-0",
-                "tipo": "Hatch"
+                "tipo": "Hatch",
+                "datas": []
             },
             {
                 "modelo": "Duster",
                 "disponivel": true,
                 "codigo_fipe": "025322-7",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             }
         ]
     },
@@ -127,19 +142,22 @@
                 "modelo": "HB20",
                 "disponivel": true,
                 "codigo_fipe": "015234-0",
-                "tipo": "Hatch"
+                "tipo": "Hatch",
+                "datas": []
             },
             {
                 "modelo": "Creta",
                 "disponivel": true,
                 "codigo_fipe": "015244-7",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Kona",
                 "disponivel": true,
                 "codigo_fipe": "015232-3",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             }
         ]
     },
@@ -151,19 +169,22 @@
                 "modelo": "Corolla",
                 "disponivel": true,
                 "codigo_fipe": "002183-0",
-                "tipo": "Sedan"
+                "tipo": "Sedan",
+                "datas": []
             },
             {
                 "modelo": "Hilux",
                 "disponivel": true,
                 "codigo_fipe": "002160-1",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "RAV4",
                 "disponivel": true,
                 "codigo_fipe": "002217-9",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             }
         ]
     },
@@ -175,19 +196,22 @@
                 "modelo": "Kicks",
                 "disponivel": true,
                 "codigo_fipe": "023186-0",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Sentra",
                 "disponivel": true,
                 "codigo_fipe": "023189-4",
-                "tipo": "Sedan"
+                "tipo": "Sedan",
+                "datas": []
             },
             {
                 "modelo": "Frontier",
                 "disponivel": true,
                 "codigo_fipe": "023183-5",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             }
         ]
     },
@@ -199,19 +223,22 @@
                 "modelo": "Civic",
                 "disponivel": true,
                 "codigo_fipe": "014090-2",
-                "tipo": "Sedan"
+                "tipo": "Sedan",
+                "datas": []
             },
             {
                 "modelo": "HR-V",
                 "disponivel": true,
                 "codigo_fipe": "014088-0",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Fit",
                 "disponivel": true,
                 "codigo_fipe": "014081-3",
-                "tipo": "Hatch"
+                "tipo": "Hatch",
+                "datas": []
             }
         ]
     },
@@ -223,19 +250,22 @@
                 "modelo": "Compass",
                 "disponivel": true,
                 "codigo_fipe": "017047-0",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Renegade",
                 "disponivel": true,
                 "codigo_fipe": "017103-4",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             },
             {
                 "modelo": "Commander",
                 "disponivel": true,
                 "codigo_fipe": "017098-4",
-                "tipo": "SUV"
+                "tipo": "SUV",
+                "datas": []
             }
         ]
     }

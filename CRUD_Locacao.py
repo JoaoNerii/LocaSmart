@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-import time
+from datetime import datetime
 from CRUD_Registro import *
 from CRUD_Seguro import *
 
@@ -136,6 +136,13 @@ def mostrar_veiculos():
         else:
             print(f"{cor.VERMELHO}Selecione uma opção válida!{cor.RESET}")
 
+    elif selecionar == 3:
+        for carro in carros:
+            print(f"Marca: {carro['marca']}")
+            for modelo in carro['modelos']:
+                if modelo['disponivel']:
+                    print(f"    Modelo: {modelo['modelos']} | Tipo: {modelo['tipo']}")
+
 def selecionar_veiculo(modelo, marca,cpf):
     usuario_carro = carregar_dados(carros_locados)
     dados_usuario = carregar_dados(usuarios)
@@ -161,6 +168,40 @@ def cancelar_locacao(cpf):
         if usuario['cpf'] == cpf:
             usuario_carro.remove(usuario)
     salvar_dados(usuario_carro, carros_locados)
+
+def verificar_disponibilidade(modeloU,marcaU,data_inicio,data_fim,):
+    carros = carregar_dados(carros_lista)
+
+    data_inicio = datetime.strptime(data_inicio, '%d-%m-%Y').date()
+    data_fim = datetime.strptime(data_fim, '%d-%m-%Y').date()
+
+    for carro in carros:
+        if carro['marca'] == marcaU.capitalize():
+            for modelo in carro['modelos']:
+                if modelo['modelo'] == modeloU.capitalize():
+                    for data in modelo['datas']:
+                        inicio = datetime.strptime(data['inicio'], '%d-%m-%Y').date()
+                        fim = datetime.strptime(data['fim'], '%d-%m-%Y').date()
+
+                        if (data_inicio <= fim and data_fim >= inicio):
+                            return False
+                        elif not modelo['datas']:
+                            return True
+                    return True
+    return False
+
+def selecionar_data(data_inicio,data_fim,modeloU,marcaU):
+    carros = carregar_dados(carros_lista)
+    if verificar_disponibilidade(modeloU,marcaU,data_inicio,data_fim):
+        for carro in carros:
+            if carro['marca'] == marcaU.capitalize():
+                for modelo in carro['modelos']:
+                    if modelo['modelo'] == modeloU.capitalize():
+                        modelo['datas'].append({'inicio': data_inicio, 'fim': data_fim})
+                        return True
+    else:
+        print("A data selecionada já está reservada!")
+        return False
 
 
 def locar_carro():
@@ -217,19 +258,31 @@ def locar_carro():
                     novo_modelo = input(f"{cor.CIANO}Digite o modelo do veiculo para qual deseja alterar: {cor.RESET}").capitalize()
                     alterar_veiculo(novo_modelo, nova_marca, cpf)
                 elif selecionar3 == 1:
+                    while True:
+                        print("Por favor, insira as datas do aluguel.")
+                        data_inicio = input("Data do Inicio: (dd-mm-aaaa)")
+                        data_fim = input("Data do Fim: (dd-mm-aaaa)")
+                        for usuario in dados_locacao:
+                            if usuario['cpf'] == cpf:
+                                if selecionar_data(data_inicio, data_fim, usuario['modelo'],usuario['marca']):
+                                    usuario['data'] = data_inicio
+                                    print('Data disponível!')
+                                    break
+                                else:
+                                    print('Data indisponível.')
                     print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
                     print(f'| [{cor.CIANO}1{cor.RESET}] Concluir Locação        |')
                     print(f'| [{cor.CIANO}2{cor.RESET}] Adicionar Seguro        |')
                     print('===============================\n')
                     selecionar_final = int(input("Selecione: "))
-                if selecionar_final == 1:
-                    print("Locacao Concluida!")
-                    for dados in dados_locacao:
-                        if dados['cpf'] == cpf:
-                            print(f"Nome: {dados['nome']}\nModelo: {dados['modelo']}\nMarca: {dados['marca']}")
-                    exit()
-                elif selecionar_final == 2:
-                    main_seguro()
-                    exit()
-                else:
-                    print("Erro")
+                    if selecionar_final == 1:
+                        print("Locacao Concluida!")
+                        for dados in dados_locacao:
+                            if dados['cpf'] == cpf:
+                                print(f"Nome: {dados['nome']}\nModelo: {dados['modelo']}\nMarca: {dados['marca']}")
+                        exit()
+                    elif selecionar_final == 2:
+                        main_seguro()
+                        exit()
+                    else:
+                        print("Erro")
