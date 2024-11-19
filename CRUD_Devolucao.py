@@ -131,7 +131,10 @@ def atualizar_devolucao():
 
         while True:
             cpf = input(Fore.YELLOW + "Novo CPF do Cliente (XXX.XXX.XXX-XX): ")
-            break
+            if re.match(r"^\d{3}\.\d{3}\.\d{3}-\d{2}$", cpf):
+                break
+            else:
+                print(Fore.RED + "CPF inválido. O formato correto é XXX.XXX.XXX-XX.")
 
         while True:
             data_devolucao = input(Fore.YELLOW + "Nova Data de Devolução (DD-MM-AAAA): ")
