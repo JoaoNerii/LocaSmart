@@ -126,12 +126,15 @@ def atualizar_devolucao():
     devolucao_id = input(Fore.YELLOW + "Informe o ID da devolução que deseja atualizar: ")
 
     if devolucao_id in devolucoes:
-        carro_id = input(Fore.YELLOW + "Novo ID do Carro: ")
-        cliente_id = input(Fore.YELLOW + "Novo ID do Cliente: ")
+        carro_id = input(Fore.YELLOW + "Novo modelo do Carro: ")
+        cliente_id = input(Fore.YELLOW + "Novo nome do Cliente: ")
 
         while True:
             cpf = input(Fore.YELLOW + "Novo CPF do Cliente (XXX.XXX.XXX-XX): ")
-            break
+            if re.match(r"^\d{3}\.\d{3}\.\d{3}-\d{2}$", cpf):
+                break
+            else:
+                print(Fore.RED + "CPF inválido. O formato correto é XXX.XXX.XXX-XX.")
 
         while True:
             data_devolucao = input(Fore.YELLOW + "Nova Data de Devolução (DD-MM-AAAA): ")
