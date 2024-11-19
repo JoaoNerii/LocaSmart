@@ -260,8 +260,8 @@ def locar_carro():
                 elif selecionar3 == 1:
                     while True:
                         print("Por favor, insira as datas do aluguel.")
-                        data_inicio = input("Data do Inicio: (dd-mm-aaaa)")
-                        data_fim = input("Data do Fim: (dd-mm-aaaa)")
+                        data_inicio = input("Data do Inicio: (DD-MM-AAAA) ")
+                        data_fim = input("Data do Fim: (DD-AA-AAAA) ")
                         for usuario in dados_locacao:
                             if usuario['cpf'] == cpf:
                                 if selecionar_data(data_inicio, data_fim, usuario['modelo'],usuario['marca']):
@@ -270,19 +270,19 @@ def locar_carro():
                                     break
                                 else:
                                     print('Data indisponível.')
-                    print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
-                    print(f'| [{cor.CIANO}1{cor.RESET}] Concluir Locação        |')
-                    print(f'| [{cor.CIANO}2{cor.RESET}] Adicionar Seguro        |')
-                    print('===============================\n')
-                    selecionar_final = int(input("Selecione: "))
-                    if selecionar_final == 1:
-                        print("Locacao Concluida!")
-                        for dados in dados_locacao:
-                            if dados['cpf'] == cpf:
-                                print(f"Nome: {dados['nome']}\nModelo: {dados['modelo']}\nMarca: {dados['marca']}")
-                        exit()
-                    elif selecionar_final == 2:
-                        main_seguro()
-                        exit()
-                    else:
-                        print("Erro")
+                        print(f'========== {cor.CIANO}LocaSmart{cor.RESET} ==========')
+                        print(f'| [{cor.CIANO}1{cor.RESET}] Concluir Locação        |')
+                        print(f'| [{cor.CIANO}2{cor.RESET}] Adicionar Seguro        |')
+                        print('===============================\n')
+                        selecionar_final = int(input("Selecione: "))
+                        if selecionar_final == 1:
+                            print("Locacao Concluida!")
+                            for dados in dados_locacao:
+                                if dados['cpf'] == cpf:
+                                    print(f"Nome: {dados['nome']}\nModelo: {dados['modelo']}\nMarca: {dados['marca']}")
+                            exit()
+                        elif selecionar_final == 2:
+                            main_seguro()
+                            exit()
+                        else:
+                            print("Erro")
