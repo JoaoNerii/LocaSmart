@@ -22,7 +22,12 @@
                 "disponivel": true,
                 "codigo_fipe": "005484-4",
                 "tipo": "Sedan",
-                "datas": []
+                "datas": [
+                    {
+                        "inicio": "10-10-2024",
+                        "fim": "13-10-2024"
+                    }
+                ]
             }
         ]
     },
@@ -270,4 +275,3 @@
         ]
     }
 ]
-
